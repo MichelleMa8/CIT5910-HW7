@@ -242,4 +242,29 @@ class RecursivePracticeTest {
         boolean actual = RecursivePractice.collatz(n);
         assertEquals(actual, expected);
     }
+
+    @Test
+    public void testPermutation1(){
+        assertThrows(Exception.class, () -> {RecursivePractice.permutation(-1, 1);});
+        assertThrows(Exception.class, () -> {RecursivePractice.permutation(1, -1);});
+        assertThrows(Exception.class, () -> {RecursivePractice.permutation(1, 2);});
+    }
+
+    @Test
+    public void testPermutation2(){
+        int n = 10;
+        int r = 1;
+        double expected = 10.0;
+        double actual = RecursivePractice.permutation(n, r);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testPermutation3(){
+        int n = 7;
+        int r = 4;
+        double expected = 840.0;
+        double actual = RecursivePractice.permutation(n, r);
+        assertEquals(expected, actual);
+    }
 }

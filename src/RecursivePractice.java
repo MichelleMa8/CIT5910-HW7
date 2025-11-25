@@ -163,4 +163,16 @@ public class RecursivePractice {
 
         return collatzHelper(n, numSet);
     }
+
+    public static double permutation(int n, int r){
+        if (n < 0 || r < 0 || n < r){
+            throw new IllegalArgumentException();
+        }
+
+        if (r == 1){
+            return (double)n;
+        }
+
+        return (double) n * permutation(n - 1, r - 1);
+    }
 }
