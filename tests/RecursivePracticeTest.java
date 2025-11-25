@@ -172,4 +172,26 @@ class RecursivePracticeTest {
         assertTrue(actual.equals(expected));
         System.setOut(originalOut);
     }
+
+    @Test
+    public void testMultiplyOdds1(){
+        assertThrows(Exception.class, () -> {RecursivePractice.multiplyOdds(-1);});
+        assertThrows(Exception.class, () -> {RecursivePractice.multiplyOdds(0);});
+    }
+
+    @Test
+    public void testMultiplyOdds2(){
+        int n = 1;
+        int expected = 1;
+        int actual = RecursivePractice.multiplyOdds(n);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testMultiplyOdds3(){
+        int n = 4;
+        int expected = 105;
+        int actual = RecursivePractice.multiplyOdds(n);
+        assertEquals(expected, actual);
+    }
 }

@@ -103,4 +103,21 @@ public class RecursivePractice {
         binary = Character.toString((char)(48 + binaryDigit))+ binary;
         writeBinaryHelper(rest, binary);
     }
+
+    public static int multiplyOdds(int n){
+        if (n <= 0){
+            throw new IllegalArgumentException();
+        }
+
+        return multiplyOddsHelper(n, 1);
+
+    }
+
+    private static int multiplyOddsHelper(int n, int oddNum){
+        if (n == 1){
+            return oddNum;
+        }
+
+        return oddNum * multiplyOddsHelper(n - 1, oddNum + 2);
+    }
 }
