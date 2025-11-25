@@ -120,4 +120,25 @@ public class RecursivePractice {
 
         return oddNum * multiplyOddsHelper(n - 1, oddNum + 2);
     }
+
+    public static int findSecondLargest(int[] arr){
+        return findSecondLargestHelper(arr, 0, Integer.MIN_VALUE, Integer.MIN_VALUE);
+    }
+
+    private static int findSecondLargestHelper(int[] arr, int index, int l, int sl){
+        if (index > arr.length - 1){
+            return sl;
+        }
+
+        int cur = arr[index];
+        if (cur > sl){
+            if (cur >= l){
+                sl = l;
+                l = cur;
+            } else {
+                sl = cur;
+            }
+        }
+        return findSecondLargestHelper(arr, index + 1, l, sl);
+    }
 }

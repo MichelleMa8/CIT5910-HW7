@@ -194,4 +194,28 @@ class RecursivePracticeTest {
         int actual = RecursivePractice.multiplyOdds(n);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testFindSecondLargest1(){
+        int[] arr = {1, 2};
+        int expected = 1;
+        int actual = RecursivePractice.findSecondLargest(arr);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testFindSecondLargest2(){
+        int[] arr = {1, 2, 2};
+        int expected = 2;
+        int actual = RecursivePractice.findSecondLargest(arr);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testFindSecondLargest3(){
+        int[] arr = {3, 2, 2, 4, 3};
+        int expected = 3;
+        int actual = RecursivePractice.findSecondLargest(arr);
+        assertEquals(expected, actual);
+    }
 }
