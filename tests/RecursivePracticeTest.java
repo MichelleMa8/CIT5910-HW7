@@ -128,4 +128,48 @@ class RecursivePracticeTest {
         double threshold = 0.000001;
         assertTrue(Math.abs((expected - actual)) <= threshold);
     }
+
+    @Test
+    public void testWriteBinary1(){
+        int x = -1;
+        assertThrows(Exception.class, () -> {RecursivePractice.writeBinary(x);});
+    }
+
+    @Test
+    public void testWriteBinary2(){
+        int x = 0;
+
+        PrintStream originalOut = System.out;
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream testOut = new PrintStream(baos);
+        System.setOut(testOut);
+
+        RecursivePractice.writeBinary(x);
+
+        String actual = baos.toString();
+        String expected = "0\n";
+
+        assertTrue(actual.equals(expected));
+        System.setOut(originalOut);
+    }
+
+    @Test
+    public void testWriteBinary3(){
+        int x = 44;
+
+        PrintStream originalOut = System.out;
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream testOut = new PrintStream(baos);
+        System.setOut(testOut);
+
+        RecursivePractice.writeBinary(x);
+
+        String actual = baos.toString();
+        String expected = "101100\n";
+
+        assertTrue(actual.equals(expected));
+        System.setOut(originalOut);
+    }
 }

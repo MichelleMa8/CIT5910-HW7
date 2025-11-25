@@ -79,4 +79,28 @@ public class RecursivePractice {
 
         return 1.0 / lower + sumReciprocalsBetween(lower + 1, upper);
     }
+
+    public static void writeBinary(int x){
+        if (x < 0){
+            throw new IllegalArgumentException();
+        }
+
+        if (x == 0){
+            System.out.println("0");
+        } else {
+            writeBinaryHelper(x, "");
+        }
+    }
+
+    private static void writeBinaryHelper(int x, String binary){
+        if (x == 0){
+            System.out.println(binary);
+            return;
+        }
+
+        int rest = x / 2;
+        int binaryDigit = x % 2;
+        binary = Character.toString((char)(48 + binaryDigit))+ binary;
+        writeBinaryHelper(rest, binary);
+    }
 }
