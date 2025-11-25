@@ -38,4 +38,33 @@ public class RecursivePractice {
         curString = Character.toString(digit) + curString;
         return convertIntToStringHelper( x / 10, curString);
     }
+
+
+    public static int digitMatch(int x, int y){
+        // edge case
+        if (x != 0 && y != 0){
+            return digitMatchHelper(x, y);
+        } else if ((x == 0 && y % 10 == 0) || (y == 0 && x % 10 == 0)){
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    private static int digitMatchHelper(int x, int y){
+        if (x == 0 || y == 0){
+            return 0;
+        }
+
+        int xLast = x % 10;
+        int yLast = y % 10;
+        int xRest = x / 10;
+        int yRest = y / 10;
+
+        if (xLast == yLast){
+            return 1 + digitMatchHelper(xRest, yRest);
+        } else {
+            return digitMatchHelper(xRest, yRest);
+        }
+    }
 }

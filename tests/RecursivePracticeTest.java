@@ -57,4 +57,44 @@ class RecursivePracticeTest {
         String actual = RecursivePractice.convertIntToString(x);
         assertTrue(expected.equals(actual));
     }
+
+    @Test
+    public void testDigitMatch1(){
+        int x = 1072503891;
+        int y = 62530841;
+        int expected = 4;
+        int actual = RecursivePractice.digitMatch(x, y);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testDigitMatch2(){
+        int x = 0;
+        int y = 840;
+        int expected = 1;
+        int actual = RecursivePractice.digitMatch(x, y);
+        assertEquals(expected, actual);
+        int actual2 = RecursivePractice.digitMatch(y, x);
+        assertEquals(expected, actual2);
+    }
+
+    @Test
+    public void testDigitMatch3(){
+        int x = 810;
+        int y = 30840;
+        int expected = 2;
+        int actual = RecursivePractice.digitMatch(x, y);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testDigitMatch4(){
+        int x = 0;
+        int y = 30841;
+        int expected = 0;
+        int actual = RecursivePractice.digitMatch(x, y);
+        assertEquals(expected, actual);
+        int actual2 = RecursivePractice.digitMatch(y, x);
+        assertEquals(expected, actual2);
+    }
 }
