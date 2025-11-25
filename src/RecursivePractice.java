@@ -67,4 +67,16 @@ public class RecursivePractice {
             return digitMatchHelper(xRest, yRest);
         }
     }
+
+    public static double sumReciprocalsBetween(int lower, int upper){
+        if (lower < 0 || upper < 0 || lower > upper){
+            throw new IllegalArgumentException();
+        }
+
+        if (lower == upper){
+            return 1.0 / lower;
+        }
+
+        return 1.0 / lower + sumReciprocalsBetween(lower + 1, upper);
+    }
 }

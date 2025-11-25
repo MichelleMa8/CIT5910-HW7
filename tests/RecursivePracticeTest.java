@@ -97,4 +97,35 @@ class RecursivePracticeTest {
         int actual2 = RecursivePractice.digitMatch(y, x);
         assertEquals(expected, actual2);
     }
+
+    @Test
+    public void testSumReciprocalsBetween1(){
+        int lower = -1;
+        int upper = 3;
+        assertThrows(Exception.class, () -> {RecursivePractice.sumReciprocalsBetween(lower, upper);});
+        assertThrows(Exception.class, () -> {RecursivePractice.sumReciprocalsBetween(upper, lower);});
+
+        int lower2 = 4;
+        int upper2 = 1;
+        assertThrows(Exception.class, () -> {RecursivePractice.sumReciprocalsBetween(lower2, upper2);});
+    }
+
+    @Test
+    public void testSumReciprocalsBetween2(){
+        int lower = 1;
+        int upper = 1;
+        double expected = 1.0;
+        double actual = RecursivePractice.sumReciprocalsBetween(lower, upper);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSumReciprocalsBetween3(){
+        int lower = 1;
+        int upper = 2;
+        double expected = 1.5;
+        double actual = RecursivePractice.sumReciprocalsBetween(lower, upper);
+        double threshold = 0.000001;
+        assertTrue(Math.abs((expected - actual)) <= threshold);
+    }
 }
