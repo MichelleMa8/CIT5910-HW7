@@ -19,5 +19,23 @@ public class RecursivePractice {
         }
     }
 
+    public static String convertIntToString(int x){
+        if (x == 0){
+            return Character.toString('0');
+        } else if (x < 0){
+            return "-" + convertIntToStringHelper(-x, "");
+        } else {
+            return convertIntToStringHelper(x, "");
+        }
+    }
 
+    private static String convertIntToStringHelper(int x, String curString){
+        if (x == 0){
+            return curString;
+        }
+
+        char digit = (char)(48 + x % 10);
+        curString = Character.toString(digit) + curString;
+        return convertIntToStringHelper( x / 10, curString);
+    }
 }
