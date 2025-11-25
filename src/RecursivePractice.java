@@ -141,4 +141,26 @@ public class RecursivePractice {
         }
         return findSecondLargestHelper(arr, index + 1, l, sl);
     }
+
+    public static boolean collatz(int n){
+        HashSet<Integer> numSet = new HashSet<>();
+        return collatzHelper(n, numSet);
+    }
+
+    private static boolean collatzHelper(int n, HashSet<Integer> numSet){
+        if (n == 1){
+            return true;
+        } else if (numSet.contains(n)){
+            return false;
+        }
+        numSet.add(n);
+
+        if (n % 2 == 0){
+            n = n / 2;
+        } else {
+            n = 3 * n + 1;
+        }
+
+        return collatzHelper(n, numSet);
+    }
 }

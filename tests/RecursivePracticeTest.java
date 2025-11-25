@@ -218,4 +218,28 @@ class RecursivePracticeTest {
         int actual = RecursivePractice.findSecondLargest(arr);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testCollatz1(){
+        int n = 10;
+        boolean expected = true;
+        boolean actual = RecursivePractice.collatz(n);
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testCollatz2(){
+        int n = 12;
+        boolean expected = true;
+        boolean actual = RecursivePractice.collatz(n);
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    public void testCollatz3(){
+        int n = 1;
+        boolean expected = true;
+        boolean actual = RecursivePractice.collatz(n);
+        assertEquals(actual, expected);
+    }
 }
