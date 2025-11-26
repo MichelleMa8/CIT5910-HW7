@@ -201,7 +201,38 @@ public class RecursivePractice {
         return newA;
     }
 
-//    public static void subsetsOfSize(ArrayList<String> list, int size){
-//
-//    }
+    public static void subsetsOfSize(ArrayList<String> list, int size){
+        if (size > list.size()){
+            throw new IllegalArgumentException();
+        }
+
+        ArrayList<String> subset = new ArrayList<>();
+        subsetsOfSizeHelper(list, size, 0, subset);
+    }
+
+    private static void subsetsOfSizeHelper(ArrayList<String> list, int size, int startIndex, ArrayList<String> subset){
+        if (size == 0){
+            System.out.println(subset.toString());
+            return;
+        }
+
+        for (int i = startIndex; i < list.size(); i++){
+            ArrayList<String> cur = new ArrayList<>();
+            cur.add(list.get(i));
+            subsetsOfSizeHelper(list, size - 1, i + 1, RecursivePractice.mergeTwoArrayLists(subset, cur));
+        }
+
+    }
+
+    private static ArrayList<String> mergeTwoArrayLists(ArrayList<String> list1, ArrayList<String> list2){
+        ArrayList<String> result = new ArrayList<>();
+        for (String str: list1){
+            result.add(str);
+        }
+
+        for (String str2: list2){
+            result.add(str2);
+        }
+        return result;
+    }
 }

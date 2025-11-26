@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -288,5 +289,66 @@ class RecursivePracticeTest {
         int expected = 13;
         int actual = RecursivePractice.recamans(n);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testSubsetsOfSize1(){
+        ArrayList<String> list = new ArrayList<>();
+        list.add("a");
+        int size = 2;
+        assertThrows(Exception.class, () -> {RecursivePractice.subsetsOfSize(list, size);});
+    }
+
+    @Test
+    public void testSubsetsOfSize2(){
+        PrintStream originalOut = System.out;
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream testOut = new PrintStream(baos);
+        System.setOut(testOut);
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Banana");
+        list.add("Apple");
+        int size = 2;
+        RecursivePractice.subsetsOfSize(list, size);
+
+        String actual = baos.toString();
+        String expected = "[Banana, Apple]\n";
+
+        assertTrue(actual.equals(expected));
+        System.setOut(originalOut);
+    }
+
+    @Test
+    public void testSubsetsOfSize3(){
+        PrintStream originalOut = System.out;
+
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        PrintStream testOut = new PrintStream(baos);
+        System.setOut(testOut);
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add("Banana");
+        list.add("Apple");
+        list.add("Mango");
+        list.add("Peach");
+        int size = 2;
+        RecursivePractice.subsetsOfSize(list, size);
+
+        String actual = baos.toString();
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("[Banana, Apple]");
+        expected.add("[Banana, Mango]");
+        expected.add("[Banana, Peach]");
+        expected.add("[Apple, Mango]");
+        expected.add("[Apple, Peach]");
+        expected.add("[Mango, Peach]");
+
+        for (String s: expected){
+            assertTrue(actual.contains(s));
+        }
+
+        System.setOut(originalOut);
     }
 }
