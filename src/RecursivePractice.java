@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -175,4 +176,32 @@ public class RecursivePractice {
 
         return (double) n * permutation(n - 1, r - 1);
     }
+
+    public static int recamans(int n){
+        if (n <= 0){
+            throw new IllegalArgumentException();
+        }
+        return recamansHelper(n, new HashSet<>());
+
+    }
+
+    private static int recamansHelper(int n, HashSet<Integer> a){
+        if (n == 0){
+            return 0;
+        }
+
+        int prevA = recamansHelper(n - 1, a);
+        int newA = prevA - n;
+
+        if (!(newA > 0 && !a.contains(newA))){
+            newA = prevA + n;
+        }
+
+        a.add(newA);
+        return newA;
+    }
+
+//    public static void subsetsOfSize(ArrayList<String> list, int size){
+//
+//    }
 }

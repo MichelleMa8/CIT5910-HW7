@@ -267,4 +267,26 @@ class RecursivePracticeTest {
         double actual = RecursivePractice.permutation(n, r);
         assertEquals(expected, actual);
     }
+
+    @Test
+    public void testRecamans1(){
+        assertThrows(Exception.class, () -> {RecursivePractice.recamans(0);});
+        assertThrows(Exception.class, () -> {RecursivePractice.recamans(-1);});
+    }
+
+    @Test
+    public void testRecamans2(){
+        int n = 2;
+        int expected = 3;
+        int actual = RecursivePractice.recamans(n);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testRecamans3(){
+        int n = 6;
+        int expected = 13;
+        int actual = RecursivePractice.recamans(n);
+        assertEquals(expected, actual);
+    }
 }
