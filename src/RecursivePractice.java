@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public class RecursivePractice {
@@ -37,7 +36,7 @@ public class RecursivePractice {
 
         char digit = (char)(48 + x % 10);
         curString = Character.toString(digit) + curString;
-        return convertIntToStringHelper( x / 10, curString);
+        return convertIntToStringHelper(x / 10, curString);
     }
 
 
@@ -70,7 +69,7 @@ public class RecursivePractice {
     }
 
     public static double sumReciprocalsBetween(int lower, int upper){
-        if (lower < 0 || upper < 0 || lower > upper){
+        if (lower <= 0 || upper <= 0 || lower > upper){
             throw new IllegalArgumentException();
         }
 
@@ -110,16 +109,12 @@ public class RecursivePractice {
             throw new IllegalArgumentException();
         }
 
-        return multiplyOddsHelper(n, 1);
-
-    }
-
-    private static int multiplyOddsHelper(int n, int oddNum){
         if (n == 1){
-            return oddNum;
+            return 1;
         }
+        int curOdd = 2 * n - 1;
+        return curOdd * multiplyOdds(n - 1);
 
-        return oddNum * multiplyOddsHelper(n - 1, oddNum + 2);
     }
 
     public static int findSecondLargest(int[] arr){
@@ -127,7 +122,7 @@ public class RecursivePractice {
     }
 
     private static int findSecondLargestHelper(int[] arr, int index, int l, int sl){
-        if (index > arr.length - 1){
+        if (index == arr.length){
             return sl;
         }
 
@@ -170,8 +165,8 @@ public class RecursivePractice {
             throw new IllegalArgumentException();
         }
 
-        if (r == 1){
-            return (double)n;
+        if (r == 0){
+            return 1.0;
         }
 
         return (double) n * permutation(n - 1, r - 1);
@@ -187,6 +182,7 @@ public class RecursivePractice {
 
     private static int recamansHelper(int n, HashSet<Integer> a){
         if (n == 0){
+            a.add(0);
             return 0;
         }
 
@@ -210,65 +206,45 @@ public class RecursivePractice {
         subsetsOfSizeHelper(list, size, 0, subset);
     }
 
-    private static void subsetsOfSizeHelper(ArrayList<String> list, int size, int startIndex, ArrayList<String> subset){
+    private static void subsetsOfSizeHelper(ArrayList<String> list, int size, int index, ArrayList<String> subset){
         if (size == 0){
             System.out.println(subset.toString());
             return;
         }
 
-        for (int i = startIndex; i < list.size(); i++){
-            ArrayList<String> cur = new ArrayList<>();
-            cur.add(list.get(i));
-            subsetsOfSizeHelper(list, size - 1, i + 1, RecursivePractice.mergeTwoArrayLists(subset, cur));
+        if (index == list.size() || size > list.size() - index) {
+            return;
         }
 
-    }
+        // option1: choose current element
+        subset.add(list.get(index));
+        subsetsOfSizeHelper(list, size - 1, index + 1, subset);
+        subset.remove(subset.size() - 1);
 
-    private static ArrayList<String> mergeTwoArrayLists(ArrayList<String> list1, ArrayList<String> list2){
-        ArrayList<String> result = new ArrayList<>();
-        for (String str: list1){
-            result.add(str);
-        }
-
-        for (String str2: list2){
-            result.add(str2);
-        }
-        return result;
+        // option2: don't choose current element
+        subsetsOfSizeHelper(list, size, index + 1, subset);
     }
 
     public static int maxSum(ArrayList<Integer> list, int limit){
         if (list.isEmpty() || limit <= 0){
             return 0;
         }
-        boolean valid = false;
-        for (int n: list){
-            if (n <= limit){
-                valid = true;
-                break;
-            }
-        }
-        if (!valid){
-            return 0;
-        } else {
-            return maxSumHelper(list, limit, 0, 0);
-        }
+        return maxSumHelper(list, limit, 0);
     }
 
-    private static int maxSumHelper(ArrayList<Integer> list, int limit, int cumValue, int index){
-        if (index == list.size()){
-            return cumValue;
+    private static int maxSumHelper(ArrayList<Integer> list, int limit, int index) {
+        if (index == list.size() || limit <= 0) {
+            return 0;
         }
 
         int cur = list.get(index);
-        if (cur > limit){
-            // not include cur
-            return maxSumHelper(list, limit, cumValue, index + 1);
-        } else if (cur == limit){
-            return cur + cumValue; // reach the limit, which is max
-        } else {
+        if (cur <= limit) {
             // max(include cur, not include cur)
-            return Math.max(maxSumHelper(list, limit - cur, cur + cumValue, index + 1),
-                    maxSumHelper(list, limit, cumValue, index + 1));
+            return Math.max(cur + maxSumHelper(list, limit - cur, index + 1),
+                    maxSumHelper(list, limit, index + 1));
+        } else {
+            // not include
+            return maxSumHelper(list, limit, index + 1);
         }
     }
 
