@@ -351,4 +351,43 @@ class RecursivePracticeTest {
 
         System.setOut(originalOut);
     }
+
+    @Test
+    public void testMaxSum1(){
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(5);
+        assertEquals(0, RecursivePractice.maxSum(new ArrayList<>(), 2));
+        assertEquals(0, RecursivePractice.maxSum(list, 2));
+        assertEquals(0, RecursivePractice.maxSum(list, -2));
+    }
+
+    @Test
+    public void testMaxSum2() {
+        ArrayList<Integer> list = new ArrayList<>();
+        // [7, 30, 8, 22, 6, 1, 14]
+        list.add(7);
+        list.add(30);
+        list.add(8);
+        list.add(22);
+        list.add(6);
+        list.add(1);
+        list.add(14);
+        int limit = 19;
+        int expected = 16;
+        assertEquals(expected, RecursivePractice.maxSum(list, limit));
+    }
+
+    @Test
+    public void testMaxSum3() {
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(6);
+        list.add(2);
+        list.add(1);
+        list.add(6);
+        list.add(1);
+        list.add(14);
+        int limit = 13;
+        int expected = 13;
+        assertEquals(expected, RecursivePractice.maxSum(list, limit));
+    }
 }

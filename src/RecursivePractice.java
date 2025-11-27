@@ -235,4 +235,40 @@ public class RecursivePractice {
         }
         return result;
     }
+
+    public static int maxSum(ArrayList<Integer> list, int limit){
+        if (list.isEmpty() || limit <= 0){
+            return 0;
+        }
+        boolean valid = false;
+        for (int n: list){
+            if (n <= limit){
+                valid = true;
+                break;
+            }
+        }
+        if (!valid){
+            return 0;
+        } else {
+            return maxSumHelper(list, limit, 0, 0);
+        }
+    }
+
+    private static int maxSumHelper(ArrayList<Integer> list, int limit, int cumValue, int index){
+        if (index == list.size() || limit == 0){
+            return cumValue;
+        }
+
+        int cur = list.get(index);
+        if (cur > limit){
+            // not include cur
+            return maxSumHelper(list, limit, cumValue, index + 1);
+        } else if (cur == limit){
+            return cur + cumValue; // reach the limit, which is max
+        } else {
+            // max(include cur, not include cur)
+            return Math.max(maxSumHelper(list, limit - cur, cur + cumValue, index + 1),
+                    maxSumHelper(list, limit, cumValue, index + 1));
+        }
+    }
 }
