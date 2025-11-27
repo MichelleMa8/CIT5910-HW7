@@ -255,7 +255,7 @@ public class RecursivePractice {
     }
 
     private static int maxSumHelper(ArrayList<Integer> list, int limit, int cumValue, int index){
-        if (index == list.size() || limit == 0){
+        if (index == list.size()){
             return cumValue;
         }
 
@@ -271,4 +271,17 @@ public class RecursivePractice {
                     maxSumHelper(list, limit, cumValue, index + 1));
         }
     }
+
+    public static int waysToClimb(int n){
+        if (n <= 0){
+            throw new IllegalArgumentException();
+        }
+
+        if (n <= 2){
+            return n;
+        }
+        // ways of climbing 1 stair this time + ways of climbing 2 stairs this time
+        return waysToClimb(n - 1) + waysToClimb(n - 2);
+    }
+
 }

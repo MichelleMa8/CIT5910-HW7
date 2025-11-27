@@ -362,7 +362,7 @@ class RecursivePracticeTest {
     }
 
     @Test
-    public void testMaxSum2() {
+    public void testMaxSum2(){
         ArrayList<Integer> list = new ArrayList<>();
         // [7, 30, 8, 22, 6, 1, 14]
         list.add(7);
@@ -378,7 +378,7 @@ class RecursivePracticeTest {
     }
 
     @Test
-    public void testMaxSum3() {
+    public void testMaxSum3(){
         ArrayList<Integer> list = new ArrayList<>();
         list.add(6);
         list.add(2);
@@ -389,5 +389,27 @@ class RecursivePracticeTest {
         int limit = 13;
         int expected = 13;
         assertEquals(expected, RecursivePractice.maxSum(list, limit));
+    }
+
+    @Test
+    public void testWaysToClimb1(){
+        assertThrows(Exception.class, () -> {RecursivePractice.waysToClimb(-1);});
+        assertThrows(Exception.class, () -> {RecursivePractice.waysToClimb(0);});
+    }
+
+    @Test
+    public void testWaysToClimb2(){
+        int n = 4;
+        int expected = 5;
+        int actual = RecursivePractice.waysToClimb(n);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testWaysToClimb3(){
+        int n = 3;
+        int expected = 3;
+        int actual = RecursivePractice.waysToClimb(n);
+        assertEquals(expected, actual);
     }
 }
